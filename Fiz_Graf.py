@@ -2,7 +2,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.gridspec as gris
-
+#
 def user_input():
     T = float(input("Время в секундах t = "))
     L = float(input("Индуктивность катушки L = "))
