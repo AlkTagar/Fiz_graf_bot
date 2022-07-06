@@ -1,9 +1,13 @@
-#!/usr/bin/python3
 import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.gridspec as gris
-#
+
 def user_input():
+    '''
+    ввод данных
+    -> время, индуктивность, ёмкость и силу тока
+    <- T, L, C, I
+    '''
     T = float(input("Время в секундах t = "))
     L = float(input("Индуктивность катушки L = "))
     C = float(input("Электроёмкость конденсатора C = "))
@@ -12,6 +16,11 @@ def user_input():
 
 
 def init_coord(T, L, C, I):
+    '''
+    создание массивов с координатами
+    -> T, L, C, I
+    <- t, q, i, Wc, Wl
+    '''
     t = np.arange(0, T, 0.0001)
     
     v = 1/(L * C)**0.5
