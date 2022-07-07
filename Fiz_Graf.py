@@ -2,17 +2,18 @@ import matplotlib.pyplot as plt
 import numpy as np
 import matplotlib.gridspec as gris
 
+
 def user_input():
     '''
     ввод данных
     -> время, индуктивность, ёмкость и силу тока
     <- T, L, C, I
     '''
-    T = float(input("Время в секундах t = "))
-    L = float(input("Индуктивность катушки L = "))
-    C = float(input("Электроёмкость конденсатора C = "))
-    I = float(input("Сила тока I = "))
-    return T, L, C, I
+    T = float(input("Время в микросекундах t = "))
+    L = float(input("Индуктивность в нанофарадах L = "))
+    C = float(input("Электроёмкость в милигенри C = "))
+    I = float(input("Сила тока в амперах I = "))
+    return T * 10**(-6), L * 10**(-9), C * 10**(-3), I
 
 
 def init_coord(T, L, C, I):
@@ -21,13 +22,13 @@ def init_coord(T, L, C, I):
     -> T, L, C, I
     <- t, q, i, Wc, Wl
     '''
-    t = np.arange(0, T, 0.0001)
+    t = np.arange(0, T, 0.00000001)
     
     v = 1/(L * C)**0.5
 
     q = (I/v) * np.cos(v*t)
     i = I * np.cos(v*t + np.pi/2)
-    Wc = q**2 / 2*C
+    Wc = q**2 / (2*C)
     Wl = (L * i**2) / 2
 
     return t, q, i, Wc, Wl
@@ -66,9 +67,7 @@ def my_plot_show(t, q, i, Wc, Wl):
 
 def main():
     T, L, C, I = user_input()
-
-    t, q, i, Wc, Wl = init_coord(T, L, C, L)
-
+    t, q, i, Wc, Wl = init_coord(T, L, C, I)
     my_plot_show(t, q, i, Wc, Wl)
 
 
