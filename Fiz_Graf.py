@@ -9,11 +9,6 @@ def user_input(T, L, C, I):
     -> время, индуктивность, ёмкость и силу тока
     <- T, L, C, I
     '''
-    print("Введите амплитудные значения")
-    T = float(T)
-    L = float(L)
-    C = float(C)
-    I = float(I)
     return T * 10**(-6), L * 10**(-9), C * 10**(-3), I
 
 
@@ -74,14 +69,10 @@ def my_plot_show(t, q, i, Wc, Wl):
     tWc.set_ylabel("Электрическая энергия Wэ")
     
     plt.savefig("dd")
-    plt.show()
 
 
-def main():
-    T, L, C, I = user_input()
+def graph(T, L, C, I):
+    T, L, C, I = user_input(T, L, C, I)
     t, q, i, Wc, Wl = init_coord(T, L, C, I)
     my_plot_show(t, q, i, Wc, Wl)
 
-
-if __name__ == "__main__":
-    main()
