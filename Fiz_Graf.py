@@ -3,17 +3,17 @@ import numpy as np
 import matplotlib.gridspec as gris
 
 
-def user_input():
+def user_input(T, L, C, I):
     '''
     ввод данных
     -> время, индуктивность, ёмкость и силу тока
     <- T, L, C, I
     '''
     print("Введите амплитудные значения")
-    T = float(input("Время в микросекундах t = "))
-    L = float(input("Индуктивность в нанофарадах L = "))
-    C = float(input("Электроёмкость в милигенри C = "))
-    I = float(input("Сила тока в амперах I = "))
+    T = float(T)
+    L = float(L)
+    C = float(C)
+    I = float(I)
     return T * 10**(-6), L * 10**(-9), C * 10**(-3), I
 
 
@@ -72,7 +72,8 @@ def my_plot_show(t, q, i, Wc, Wl):
     tWc.grid()
     tWc.set_xlabel("Значение времени t")
     tWc.set_ylabel("Электрическая энергия Wэ")
-
+    
+    plt.savefig("dd")
     plt.show()
 
 
