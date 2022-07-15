@@ -48,10 +48,6 @@ I = 0
 def get_I(message): # сила тока
     global I
     I = float(message.text)
-    print(f"T= {T}")
-    print(f"L= {L}")
-    print(f"C= {C}")
-    print(f"I= {I}")
     graph(T, L, C, I)
 
 
