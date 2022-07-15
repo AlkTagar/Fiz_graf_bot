@@ -1,6 +1,6 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import matplotlib.gridspec as gris
+import time
 
 
 def user_input(T, L, C, I):
@@ -30,6 +30,7 @@ def init_coord(T, L, C, I):
     return t, q, i, Wc, Wl
 
 
+files = []
 def my_plot_show(t, q, i, Wc, Wl):
     '''
     вывод графиков
@@ -43,7 +44,8 @@ def my_plot_show(t, q, i, Wc, Wl):
     ax_I.grid()
     ax_I.set_xlabel("Время t")
     ax_I.set_ylabel("Сила тока i")
-    plt.savefig("Fiz_I_graph.png")
+    I_file_name = f"Fiz_I_graph_{int(time.time())}.png"
+    plt.savefig(I_file_name)
 
     # график заряда
     fig_q = plt.figure()
