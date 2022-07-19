@@ -1,6 +1,7 @@
+import time
+
 import matplotlib.pyplot as plt
 import numpy as np
-import time
 
 
 def user_input(T, L, C, I):
@@ -9,7 +10,11 @@ def user_input(T, L, C, I):
     -> время, индуктивность, ёмкость и силу тока
     <- T, L, C, I
     '''
-    return T * 10**(-6), L * 10**(-9), C * 10**(-3), I
+    T = T * 10**(-6)
+    L = L * 10**(-9)
+    C = C * 10**(-3)
+    I = I
+    return T, L, C, I
 
 
 def init_coord(T, L, C, I):
@@ -30,7 +35,21 @@ def init_coord(T, L, C, I):
     return t, q, i, Wc, Wl
 
 
-files = []
+def generate_picture(x_values, y_values, x_label, y_label, name_frame):
+    figure = plt.figure()
+    axes = figure.add_axes([0.15, 0.1, 0.8, 0.8])
+    axes.plot(x_values, y_values)
+    axes.grid()
+    axes.set_xlabel(x_label)
+    axes.set_ylabel(y_label)
+    picture_name = (
+            f"Fiz_Graph_"+
+            hex(int(str(time.time()).replace(".", "01"))).upper()+
+            f"_{name_frame}.png"
+            )
+    plt.savefig(picture_name)
+
+
 def my_plot_show(t, q, i, Wc, Wl):
     '''
     вывод графиков
