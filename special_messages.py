@@ -14,3 +14,6 @@ Hello, I'm fiz graf bot
     create new graf
             """)
 
+
+bot.polling(none_stop=True, interval=0)
+
