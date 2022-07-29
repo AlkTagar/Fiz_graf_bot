@@ -17,7 +17,7 @@ def user_input(T: float, L: float, C: float, I: float) -> tuple:
     return T, L, C, I
 
 
-def init_coord(T, L, C, I):
+def init_coord(T: float, L: float, C: float, I:float) -> tuple:
     '''
     создание массивов с координатами
     -> амплитудные значения: T, L, C, I
@@ -25,17 +25,21 @@ def init_coord(T, L, C, I):
     '''
     t = np.arange(0, T, 0.00000001)
 
-    v = 1/(L * C)**0.5
+    v = 1 / (L * C)**0.5
 
-    q = (I/v) * np.cos(v*t)
+    q = (I / v) * np.cos(v * t)
     i = I * np.cos(v*t + np.pi/2)
-    Wc = q**2 / (2*C)
+    Wc = q**2 / (2 * C)
     Wl = (L * i**2) / 2
 
     return t, q, i, Wc, Wl
 
 
-def generate_picture(x_values, y_values, x_label, y_label, name_frame) -> str:
+def generate_picture(
+        x_values: numpy.ndarray, y_values: numpy.ndarray,
+        x_label: str, y_label: str,
+        name_frame: str
+    ) -> str:
     figure = plt.figure()
 
     axes = figure.add_axes([0.15, 0.1, 0.8, 0.8])
@@ -46,9 +50,10 @@ def generate_picture(x_values, y_values, x_label, y_label, name_frame) -> str:
     axes.set_ylabel(y_label)
 
     picture_name = (
-            f"Fiz_Graph_"+
-            hex(int(str(time.time()).replace(".", "01"))).upper()+
-            f"_{name_frame}.png")
+        f"Fiz_Graph_"+
+        hex(int(str(time.time()).replace(".", "01"))).upper()+
+        f"_{name_frame}.png"
+    )
 
     plt.savefig(picture_name)
     return picture_name

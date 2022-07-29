@@ -6,65 +6,63 @@ import config
 bot = telebot.TeleBot(config.TOKEN)
 
 
-def in_amp_val(message):
+def start_graph(message):
+    bot.send_message(
+        message.from_user.id,
+        "Поочерёдно введите амплитудные значения"
+    )
 
-    def start_graph(message):
-        bot.send_message(
-                message.from_user.id,
-                "Поочерёдно введите амплитудные значения")
+    bot.send_message(
+        message.from_user.id,
+        "Время в микросекундах t = "
+    )
 
-        bot.send_message(
-                message.from_user.id,
-                "Время в микросекундах t = ")
+    bot.register_next_step_handler(message, get_T)
 
-        bot.register_next_step_handler(message, get_T)
+T = 0
+def get_T(message): # время
+    global T
 
+    T = float(message.text)
 
-    T = 0
-    def get_T(message): # время
-        global T
+    bot.send_message(
+        message.from_user.id,
+        "Индуктивность катушки в наногенри L = "
+    )
 
-        T = float(message.text)
+    bot.register_next_step_handler(message, get_L)
 
-        bot.send_message(
-                message.from_user.id,
-                "Индуктивность катушки в наногенри L = ")
+L = 0
+def get_L(message): # индуктивность
+    global L
 
-        bot.register_next_step_handler(message, get_L)
+    L = float(message.text)
 
-    L = 0
-    def get_L(message): # индуктивность
-        global L
+    bot.send_message(
+        message.from_user.id,
+        "Электроёмкость конденсатора в миллифарадах C = "
+    )
 
-        L = float(message.text)
+    bot.register_next_step_handler(message, get_C)
 
-        bot.send_message(
-                message.from_user.id,
-                "Электроёмкость конденсатора в миллифарадах C = ")
+C = 0
+def get_C(message): # электроёмкость
+    global C
 
-        bot.register_next_step_handler(message, get_C)
+    C = float(message.text)
 
-    C = 0
-    def get_C(message): # электроёмкость
-        global C
+    bot.send_message(
+        message.from_user.id,
+        "Сила тока в амперах I = "
+    )
 
-        C = float(message.text)
+    bot.register_next_step_handler(message, get_I)
 
-        bot.send_message(
-                message.from_user.id,
-                "Сила тока в амперах I = ")
+I = 0
+def get_I(message): # сила тока
+    global I
 
-        bot.register_next_step_handler(message, get_I)
-
-    I = 0
-    def get_I(message): # сила тока
-        global I
-
-        I = float(message.text)
-
-    start_graph(message)
-
-    return T, L, C, I
+    I = float(message.text)
 
 
 bot.polling(none_stop=True, interval=0)

@@ -1,8 +1,8 @@
 import telebot
 
 import config
-import special_messages as mes
-from input_amplitude_values import in_amp_val
+import special_messages
+from input_amplitude_values import start_graph
 
 
 print("start")
@@ -16,11 +16,11 @@ def comands_handler(message):
 
         case "/start" | "/help":
             print("start case")
-            mes.start(message)
+            special_messages.start(message)
 
         case "/new_graph":
             print("new case")
-            in_amp_val(message)
+            start_graph(message)
 
         case _ :
             bot.send_message(message.from_user.id, "?")
