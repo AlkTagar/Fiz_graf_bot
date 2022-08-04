@@ -36,7 +36,7 @@ def init_coord(T: float, L: float, C: float, I:float) -> tuple:
 
 
 def generate_picture(
-        x_values: numpy.ndarray, y_values: numpy.ndarray,
+        x_values: np.ndarray, y_values: np.ndarray,
         x_label: str, y_label: str,
         name_frame: str
     ) -> str:

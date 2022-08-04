@@ -9,9 +9,9 @@ bot = telebot.TeleBot(config.TOKEN)
 def start(message):
     bot.send_message(
         message.from_user.id,
-        "Hello, I'm fiz graf bot",
-        "press /new_graph to",
-        "create new graf"
+        "Hello, I'm fiz graf bot\n",
+        "press /new_graph to\n",
+        "create new graf\n"
     )
 
 
